@@ -45,7 +45,7 @@ public class UserResource {
 
 	}
 	
-	@GetMapping(value = "/a/{name}")
+	@GetMapping(value = "/nomes/{name}")
 	public ResponseEntity<UserDTO> findByName(@PathVariable String name){
 		
 		User list = service.findByName(name);
