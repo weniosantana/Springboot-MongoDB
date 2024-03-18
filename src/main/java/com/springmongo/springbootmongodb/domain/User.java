@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -15,17 +16,12 @@ public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	@Id
 	private String id;
 	private String name;
 	private String email;
 	
-	@Autowired
-	private Post post;
-	
-	
+	@DBRef(lazy=true)
 	private List<Post> postList = new ArrayList<>();
 	
 	public User() {
@@ -82,6 +78,14 @@ public class User implements Serializable{
 			return false;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public List<Post> getPostList() {
+		return postList;
+	}
+
+	public void setPostList(List<Post> postList) {
+		this.postList = postList;
 	}
 
 	
