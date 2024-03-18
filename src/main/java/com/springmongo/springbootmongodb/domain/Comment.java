@@ -1,70 +1,52 @@
 package com.springmongo.springbootmongodb.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection="user")
-public class User implements Serializable{
+@Document
+public class Comment implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	@Id
 	private String id;
-	private String name;
-	private String email;
-	
-	@Autowired
-	private Post post;
+	private String text;
+	private Date date;
 	
 	
-	private List<Post> postList = new ArrayList<>();
+	public Comment() {
 	
-	public User() {
-		}
-
-	public User(String id, String name, String email) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
 	}
 	
+	public Comment(String id, String text, Date date) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.date = date;
+	}
+
 	public String getId() {
 		return id;
 	}
-
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-
-	public String getName() {
-		return name;
+	public String getText() {
+		return text;
 	}
-
-
-	public void setName(String name) {
-		this.name = name;
+	public void setText(String text) {
+		this.text = text;
 	}
-
-
-	public String getEmail() {
-		return email;
+	public Date getDate() {
+		return date;
 	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
@@ -80,11 +62,15 @@ public class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Comment other = (Comment) obj;
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", text=" + text + ", date=" + date + "]";
+	}
 	
-
-
+	
+	
 }
