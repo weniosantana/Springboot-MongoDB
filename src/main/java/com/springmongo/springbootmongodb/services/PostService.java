@@ -30,6 +30,8 @@ public class PostService {
 	public List<Post> findByBody(String text){
 		return repo.findByBodyContainingIgnoreCase(text);
 	}
+	
+	
 		
 	public Post Insert(Post obj) {
 		

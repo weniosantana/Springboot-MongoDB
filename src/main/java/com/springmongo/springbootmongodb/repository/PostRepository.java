@@ -1,5 +1,6 @@
 package com.springmongo.springbootmongodb.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -18,4 +19,10 @@ public interface PostRepository extends MongoRepository<Post, String>{
 	List<Post> searchTitle(String text);
 	
 	List<Post> findByBodyContainingIgnoreCase(String text);
+	
+	@Query("{ $and: [ {date: {$gte: ?1}}, { }, { } ]}")
+	List<Post> searchAll(String text, Date minDate, Date maxDate);
+	
 }
+
+
