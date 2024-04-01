@@ -27,6 +27,9 @@ public class PostService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
+	public List<Post> findByBody(String text){
+		return repo.findByBodyContainingIgnoreCase(text);
+	}
 		
 	public Post Insert(Post obj) {
 		

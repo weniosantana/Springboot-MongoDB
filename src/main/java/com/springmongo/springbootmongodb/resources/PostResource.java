@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -20,6 +21,7 @@ import com.springmongo.springbootmongodb.domain.Post;
 import com.springmongo.springbootmongodb.domain.PostDTO;
 import com.springmongo.springbootmongodb.domain.User;
 import com.springmongo.springbootmongodb.domain.UserDTO;
+import com.springmongo.springbootmongodb.resources.util.URL;
 import com.springmongo.springbootmongodb.services.PostService;
 import com.springmongo.springbootmongodb.services.UserService;
 
@@ -45,6 +47,16 @@ public class PostResource {
 		Post list = service.findById(id);
 		
 		return ResponseEntity.ok().body(new PostDTO(list));
+
+	}
+	
+	@GetMapping(value = "/titlesearch")
+	public ResponseEntity<List<Post>> findByBody(@RequestParam(value="text", defaultValue="") String text){
+		
+		text = URL.decodeParam(text);
+		List<Post> list = service.findByBody(text);
+		
+		return ResponseEntity.ok().body(list);
 
 	}
 			
@@ -75,9 +87,7 @@ public class PostResource {
 		obj = service.Update(obj);
 		
 		return ResponseEntity.noContent().build();
- 
-		
-		
+
 	}
 	
 	

@@ -1,32 +1,23 @@
 package com.springmongo.springbootmongodb.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CommentDTO {
+public class CommentDTO implements Serializable{
 
-	private String id;
+	private static final long serialVersionUID = 1L;
 	private String text;
 	private Date date;
+	private AuthorDTO author;
 	
 	public CommentDTO() {
 	}
 
-	
-	
-	public CommentDTO(Comment obj) {
-		this.id = obj.getId();
-		this.text = obj.getText();
-		this.date = obj.getDate();
-	}
-
-
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public CommentDTO(String text, Date date, AuthorDTO author) {
+		super();
+		this.text = text;
+		this.date = date;
+		this.author = author;
 	}
 
 	public String getText() {
@@ -44,6 +35,16 @@ public class CommentDTO {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public AuthorDTO getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(AuthorDTO author) {
+		this.author = author;
+	}
+
+	
 	
 	
 	
