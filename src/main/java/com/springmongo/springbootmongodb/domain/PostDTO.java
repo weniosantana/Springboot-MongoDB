@@ -13,6 +13,7 @@ public class PostDTO implements Serializable{
 	private Date date;
 	private String title;
 	private String body;
+	private String author;
 	
 	
 	public PostDTO() {
